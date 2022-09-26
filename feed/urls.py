@@ -7,7 +7,8 @@ urlpatterns = [
     
     path('orders/',views.order_list),
     path('orders/<int:id>', views.order_detail),
-    path('api/population/', views.population)
+    path('api/population/', views.population),
+    path('api/payload/', views.payload)
     
 ]
 

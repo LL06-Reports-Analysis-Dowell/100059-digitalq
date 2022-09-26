@@ -1,13 +1,15 @@
 
 import imp
+import json
+import requests
+import pprint
 from pickle import FROZENSET
 from re import T
 import re
 from urllib import response
 from django.shortcuts import render
 from .models import Order
-from .functions import targeted_population
-from .serializers import OrderSerializer
+from .functions import payload_api, targeted_population, payload_api
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -63,8 +65,19 @@ def order_detail (request, id, format=None) :
 def population(request):
     if request.method == 'GET':
         
-        response = targeted_population('digitalq', 'current_order', ['id'], 'life_time')
-        serializer = OrderSerializer(response, many=True)
-            
-
+        response = targeted_population('digitalq', 'current_order', ['id'])
+        
         return Response(response)
+    
+    
+@api_view(['GET', 'POST'])
+def payload(request):
+    if request.method == 'GET':
+        
+        response = payload_api()
+        
+        return Response(response)
+    elif request.method == 'POST':
+        pass
+
+        
