@@ -6,6 +6,7 @@ import re
 from urllib import response
 from django.shortcuts import render
 from .models import Order
+from .functions import targeted_population
 from .serializers import OrderSerializer
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -56,3 +57,14 @@ def order_detail (request, id, format=None) :
     elif request.method =='DELETE':
         order.delete()
         return Response (status=status.HTTP_204_NO_CONTENT)
+    
+    
+@api_view(['GET'])
+def population(request):
+    if request.method == 'GET':
+        
+        response = targeted_population('digitalq', 'current_order', ['id'], 'life_time')
+        serializer = OrderSerializer(response, many=True)
+            
+
+        return Response(response)

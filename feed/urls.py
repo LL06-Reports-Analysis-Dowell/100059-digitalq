@@ -6,7 +6,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     
     path('orders/',views.order_list),
-    path('orders/<int:id>', views.order_detail)
+    path('orders/<int:id>', views.order_detail),
+    path('api/population/', views.population)
     
 ]
 
