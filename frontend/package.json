@@ -1,5 +1,6 @@
 {
   "version": "0.1.0",
+  "homepage": "https://LL06-Reports-Analysis-Dowell.github.io/100059-digitalq/frontend",
   "private": true,
   "dependencies": {
     "@decathlon/react-table": "^2.1.1",
