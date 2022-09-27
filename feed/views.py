@@ -65,7 +65,7 @@ def order_detail (request, id, format=None) :
 def population(request):
     if request.method == 'GET':
         
-        response = targeted_population('digitalq', 'current_order', ['id'])
+        response = targeted_population('digitalq', 'current_order', ['id'], 'life_time')
         
         return Response(response)
     
