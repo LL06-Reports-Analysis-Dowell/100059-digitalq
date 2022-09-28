@@ -51,7 +51,7 @@ def targeted_population(database, collection, fields, period):
     return response
 
 
-def payload_api():
+def payload_api(number):
     url = "http://100002.pythonanywhere.com/"
 
     payload = json.dumps({
@@ -63,7 +63,7 @@ def payload_api():
         "function_ID": "ABCDE",
         "command": "fetch",
         "field": {
-            "mobile":"1122334455"
+            "mobile": number
         },
         "update_field": {
             "order_nos": 21

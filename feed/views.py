@@ -70,14 +70,23 @@ def population(request):
         return Response(response)
     
     
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def payload(request):
     if request.method == 'GET':
         
-        response = payload_api()
+        response = payload_api(1122334455)
         
         return Response(response)
     elif request.method == 'POST':
         pass
 
         
+@api_view(['GET'])
+def payload_param(request, number):
+    if request.method == 'GET':
+        
+        response = payload_api(number)
+        
+        return Response(response)
+    elif request.method == 'POST':
+        pass
