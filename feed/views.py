@@ -1,12 +1,15 @@
 
 import imp
+import json
+import requests
+import pprint
 from pickle import FROZENSET
 from re import T
 import re
 from urllib import response
 from django.shortcuts import render
 from .models import Order
-from .serializers import OrderSerializer
+from .functions import payload_api, targeted_population, payload_api
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -56,3 +59,34 @@ def order_detail (request, id, format=None) :
     elif request.method =='DELETE':
         order.delete()
         return Response (status=status.HTTP_204_NO_CONTENT)
+    
+    
+@api_view(['GET'])
+def population(request):
+    if request.method == 'GET':
+        
+        response = targeted_population('digitalq', 'current_order', ['id'], 'life_time')
+        
+        return Response(response)
+    
+    
+@api_view(['GET'])
+def payload(request):
+    if request.method == 'GET':
+        
+        response = payload_api(1122334455)
+        
+        return Response(response)
+    elif request.method == 'POST':
+        pass
+
+        
+@api_view(['GET'])
+def payload_param(request, number):
+    if request.method == 'GET':
+        
+        response = payload_api(number)
+        
+        return Response(response)
+    elif request.method == 'POST':
+        pass
