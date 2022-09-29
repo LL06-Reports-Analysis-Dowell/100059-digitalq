@@ -41,91 +41,123 @@ function FourthScreen(props) {
           />
           <Image3 src={require("../assets/images/logo.png")}></Image3>
           <Brand>brand of cafe, branch</Brand>
-          <MaterialCardWithButtons2Stack>
-            <MaterialCardWithButtons
-              style={{
-                height: 101,
-                width: 146,
-                position: "absolute",
-                left: 0,
-                top: 0,
-              }}></MaterialCardWithButtons>
-            <MaterialRadio1
-              style={{
-                height: 17,
-                width: 25,
-                position: "absolute",
-                left: 0,
-                top: 5,
-              }}></MaterialRadio1>
-            <TextInput placeholder="$8"></TextInput>
-            <TextInput1 placeholder="Z1106"></TextInput1>
-          </MaterialCardWithButtons2Stack>
-          <TextInput2StackStack>
-            <TextInput2Stack>
-              <TextInput2 placeholder="Z1106"></TextInput2>
-              <MaterialCardWithButtons
-                style={{
-                  height: 101,
-                  width: 146,
-                  position: "absolute",
-                  left: 0,
-                  top: 0,
-                }}></MaterialCardWithButtons>
-            </TextInput2Stack>
-            <TextInput3 placeholder="$8"></TextInput3>
-            <MaterialRadio1
-              style={{
-                height: 17,
-                width: 25,
-                position: "absolute",
-                left: 0,
-                top: 5,
-              }}></MaterialRadio1>
-          </TextInput2StackStack>
-          <MaterialCardWithButtons4Stack>
-            <MaterialCardWithButtons
-              style={{
-                height: 101,
-                width: 146,
-                position: "absolute",
-                left: 0,
-                top: 0,
-              }}></MaterialCardWithButtons>
-            <MaterialRadio1
-              style={{
-                height: 17,
-                width: 25,
-                position: "absolute",
-                left: 0,
-                top: 5,
-              }}></MaterialRadio1>
-            <TextInput4 placeholder="$8"></TextInput4>
-            <TextInput5 placeholder="Z1106"></TextInput5>
-          </MaterialCardWithButtons4Stack>
-          <TextInput6StackStack>
-            <TextInput6Stack>
-              <TextInput6 placeholder="Z1106"></TextInput6>
-              <MaterialCardWithButtons
-                style={{
-                  height: 101,
-                  width: 146,
-                  position: "absolute",
-                  left: 0,
-                  top: 0,
-                }}></MaterialCardWithButtons>
-            </TextInput6Stack>
-            <TextInput7 placeholder="$8"></TextInput7>
-            <MaterialRadio1
-              style={{
-                height: 17,
-                width: 25,
-                position: "absolute",
-                left: 0,
-                top: 5,
-              }}></MaterialRadio1>
-          </TextInput6StackStack>
 
+          <div class="row p-4" style={{ height: "220px", overflowY: "scroll" }}>
+            <div className="col-5 pt-3">
+              <div
+                className="card"
+                style={{
+                  width: "8rem",
+                  // height: "6rem",
+                  background:
+                    "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC",
+                }}>
+                <input
+                  className="form-check-input position-relative"
+                  type="radio"
+                  name="exampleRadios"
+                  id="exampleRadios2"
+                  value="b"></input>
+                <div className="pt-4">$7</div>
+                <div>Z1006</div>
+              </div>
+            </div>
+            <div className="col-5 pt-3">
+              <div
+                className="card"
+                style={{
+                  width: "8rem",
+                  // height: "6rem",
+                  background:
+                    "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC",
+                }}>
+                <input
+                  className="form-check-input position-relative"
+                  type="radio"
+                  name="exampleRadios"
+                  id="exampleRadios2"
+                  value="b"></input>
+                <div className="pt-4">$7</div>
+                <div>Z1006</div>
+              </div>
+            </div>
+            <div className="col-5 pt-3">
+              <div
+                className="card"
+                style={{
+                  width: "8rem",
+                  // height: "6rem",
+                  background:
+                    "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC",
+                }}>
+                <input
+                  className="form-check-input position-relative"
+                  type="radio"
+                  name="exampleRadios"
+                  id="exampleRadios2"
+                  value="b"></input>
+                <div className="pt-4">$7</div>
+                <div>Z1006</div>
+              </div>
+            </div>
+            <div className="col-5 pt-3">
+              <div
+                className="card"
+                style={{
+                  width: "8rem",
+                  // height: "6rem",
+                  background:
+                    "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC",
+                }}>
+                <input
+                  className="form-check-input position-relative"
+                  type="radio"
+                  name="exampleRadios"
+                  id="exampleRadios2"
+                  value="b"></input>
+                <div className="pt-4">$7</div>
+                <div>Z1006</div>
+              </div>
+            </div>
+            <div className="col-5 pt-3">
+              <div
+                className="card"
+                style={{
+                  width: "8rem",
+                  // height: "6rem",
+                  background:
+                    "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC",
+                }}>
+                <input
+                  className="form-check-input position-relative"
+                  type="radio"
+                  name="exampleRadios"
+                  id="exampleRadios2"
+                  value="b"></input>
+                <div className="pt-4">$7</div>
+                <div>Z1006</div>
+              </div>
+            </div>
+            <div className="col-5 pt-3">
+              <div
+                className="card"
+                style={{
+                  width: "8rem",
+                  // height: "6rem",
+                  background:
+                    "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC",
+                }}>
+                <input
+                  className="form-check-input position-relative"
+                  type="radio"
+                  name="exampleRadios"
+                  id="exampleRadios2"
+                  value="b"></input>
+                <div className="pt-4">$7</div>
+                <div>Z1006</div>
+              </div>
+            </div>
+          </div>
           <Rect>
             <LoremIpsumRow>
               <LoremIpsum>selected dished {"\n"}detail goes here</LoremIpsum>
@@ -259,6 +291,7 @@ const Container = styled.div`
   // border-radius: 5px;
   // flex-direction: column;
   border-style: solid;
+  left: 30%;
   position: absolute;
 
   height: fit-content;

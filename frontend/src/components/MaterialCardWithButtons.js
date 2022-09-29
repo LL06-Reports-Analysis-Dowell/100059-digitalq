@@ -10,50 +10,20 @@ function MaterialCardWithButtons(props) {
       <ButtonGroup>
         <LeftBtn>
           <ButtonOverlay>
-            {/* <MaterialCommunityIconsIcon
-              name="heart"
-              style={{
-                fontSize: 24,
-                color: "#000",
-                opacity: 0.5
-              }}
-            ></MaterialCommunityIconsIcon> */}
             <IoReloadCircleSharp />
           </ButtonOverlay>
         </LeftBtn>
         <CenterBtn>
           <ButtonOverlay>
-            {/* <MaterialCommunityIconsIcon
-              name="book"
-              style={{
-                fontSize: 24,
-                color: "#000",
-                opacity: 0.5,
-              }}></MaterialCommunityIconsIcon> */}
             <IoReloadCircleSharp />
           </ButtonOverlay>
         </CenterBtn>
         <RightBtn>
           <ButtonOverlay>
-            {/* <MaterialCommunityIconsIcon
-              name="share"
-              style={{
-                fontSize: 24,
-                color: "#000",
-                opacity: 0.5,
-              }}></MaterialCommunityIconsIcon> */}
             <IoReloadCircleSharp />
           </ButtonOverlay>
         </RightBtn>
       </ButtonGroup>
-      {/* <MaterialCardWithRightButtons
-        style={{
-          height: 266,
-          width: 359,
-          position: "absolute",
-          left: -394,
-          top: 95,
-        }}></MaterialCardWithRightButtons> */}
       <IoReloadCircleSharp />
     </Container>
   );

@@ -27,7 +27,7 @@ const Container = styled.div`
   border-style: solid;
   position: absolute;
   padding: 50px 0;
-
+  left: 30%;
   width: fit-content;
   height: fit-content;
 `;

@@ -16,6 +16,7 @@ function SecondScreen(props) {
       console.log(this.state.phone);
     });
   };
+
   return (
     <Container>
       <RectStack>
@@ -118,7 +119,7 @@ const Container = styled.div`
   // flex-direction: column;
   border-style: solid;
   position: absolute;
-
+  left: 30%;
   height: fit-content;
 `;
 const OrderBtn = styled.div`

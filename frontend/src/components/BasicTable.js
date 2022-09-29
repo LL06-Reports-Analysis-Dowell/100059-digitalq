@@ -3,10 +3,21 @@ import { useTable } from "react-table";
 import { COLUMNS } from "./Colums";
 import MOCK_DATA from "./MOCK_DATA.json";
 import "./table.css";
+import axios from "axios";
 
 function BasicTable() {
+  const baseURL = "http://100059.pythonanywhere.com/api/payload/?format=api";
+  const [order, setorder] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setorder(response.data);
+      console.log(order);
+    });
+  }, []);
+
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => MOCK_DATA, []);
+  const data = useMemo(() => order, []);
 
   const tableInstance = useTable({
     columns,
