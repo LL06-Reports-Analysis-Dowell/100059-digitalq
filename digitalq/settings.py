@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'feed',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
     
 ]
 

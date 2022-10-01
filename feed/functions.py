@@ -1,6 +1,9 @@
 import json
+from unittest import result
 import requests
 import pprint
+
+from django.core import serializers
 
 def targeted_population(database, collection, fields, period):
 
@@ -47,12 +50,18 @@ def targeted_population(database, collection, fields, period):
     headers = {'content-type': 'application/json'}
 
     response = requests.post(url, json=request_data,headers=headers)
+    
+    text = response.text
+    
+    result = json.loads(text)
 
-    return response
+    return result
 
 
 def payload_api(number):
     url = "http://100002.pythonanywhere.com/"
+    number = str(number)
+
 
     payload = json.dumps({
         "cluster": "digitalq",
@@ -63,7 +72,7 @@ def payload_api(number):
         "function_ID": "ABCDE",
         "command": "fetch",
         "field": {
-            "mobile": number
+            "mobile":"1122334455"
         },
         "update_field": {
             "order_nos": 21
@@ -76,4 +85,7 @@ def payload_api(number):
 
     response = requests.request("POST", url, headers=headers, data=payload)
     
-    return response
+    text = response.text
+    
+    result = json.loads(text)
+    return result
