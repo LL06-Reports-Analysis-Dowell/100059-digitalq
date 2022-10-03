@@ -9,7 +9,7 @@ import re
 from urllib import response
 from django.shortcuts import render
 from .models import Order
-from .functions import payload_api, targeted_population, payload_api
+from .functions import *
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -77,8 +77,7 @@ def payload(request):
         response = payload_api(1122334455)
         
         return Response(response)
-    elif request.method == 'POST':
-        pass
+
 
         
 @api_view(['GET'])
@@ -88,5 +87,13 @@ def payload_param(request, number):
         response = payload_api(number)
         
         return Response(response)
-    elif request.method == 'POST':
-        pass
+
+    
+    
+@api_view(['GET'])
+def targeted_populations(request):
+    if request.method == 'GET':
+        
+        response = targeted_population('digitalq', 'current_order', ['id'], 'life_time')
+        
+        return Response(response)
