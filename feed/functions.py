@@ -72,7 +72,7 @@ def payload_api(number):
         "function_ID": "ABCDE",
         "command": "fetch",
         "field": {
-            "mobile":"1122334455"
+            "mobile": number
         },
         "update_field": {
             "order_nos": 21

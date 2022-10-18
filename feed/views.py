@@ -70,13 +70,15 @@ def population(request):
         return Response(response)
     
     
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def payload(request):
-    if request.method == 'GET':
+    
+    if request.method == 'POST':
+        num = request.data
+        #print ( num.get("number"))
+        response = payload_api(num.get("number"))
         
-        response = payload_api(1122334455)
-        
-        return Response(response)
+        return Response(response, status = status.HTTP_201_CREATED)
 
 
         
