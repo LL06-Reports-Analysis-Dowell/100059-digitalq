@@ -69,6 +69,17 @@ def population(request):
         
         return Response(response)
     
+  
+          
+@api_view(['GET'])
+def payload_param(request, number):
+    if request.method == 'GET':
+        
+        response = payload_api(number)
+        
+        return Response(response)
+
+  
     
 @api_view(['GET', 'POST'])
 def payload(request):
@@ -81,16 +92,6 @@ def payload(request):
         return Response(response, status = status.HTTP_201_CREATED)
 
 
-        
-@api_view(['GET'])
-def payload_param(request, number):
-    if request.method == 'GET':
-        
-        response = payload_api(number)
-        
-        return Response(response)
-
-    
     
 @api_view(['GET'])
 def targeted_populations(request):
@@ -99,3 +100,15 @@ def targeted_populations(request):
         response = targeted_population('digitalq', 'current_order', ['id'], 'life_time')
         
         return Response(response)
+
+
+
+@api_view(['GET', 'POST'])
+def connection(request):
+    
+    if request.method == 'POST':
+        data = request.data
+        
+        response = connection_function(data.get("dish_id"), data.get("dish_name"), data.get("dish_code"), data.get("dish_price"), data.get("dish_type"), data.get("dish_specs"))
+        
+        return Response(response, status = status.HTTP_201_CREATED)
