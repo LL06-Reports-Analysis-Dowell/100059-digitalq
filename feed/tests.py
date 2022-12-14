@@ -43,21 +43,23 @@ r=requests.post(url,json=data)
 url = "http://100002.pythonanywhere.com/" 
 #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
 payload = json.dumps({
-    "cluster": "socialmedia",
-    "database": "socialmedia",
-    "collection": "qual_cat",
-    "document": "qual_cat",
-    "team_member_ID": "1145",
+    "cluster": "digitalq",
+    "database": "digitalq",
+    "collection": "dish_list",
+    "document": "dish_list",
+    "team_member_ID": "1126",
     "function_ID": "ABCDE",
     "command": "insert",
     "field": {
         "eventId" : r.text,
-        "dish_id" : "dish_id",
+        "dish_code" : "dish_code",
         "dish_name" : "dish_name",
-        "dish_code" :" dish_code",
+        "product_image" : "image_url",
+        "dish_qrcode" : "qrcode_link",
+        "delivery_time" : "time",
         "dish_price" : "dish_price",
         "dish_type" : "dish_type",
-        "dish_specs" : ["spec1","spec2","spec3"]
+        "dish_specs" : "dish_specs"
         },
     "update_field": {
         "order_nos": 21
@@ -68,5 +70,6 @@ headers = {
     'Content-Type': 'application/json'
     }
 response = requests.request("POST", url, headers=headers, data=payload)
+
 response = response.text
 print(response)
