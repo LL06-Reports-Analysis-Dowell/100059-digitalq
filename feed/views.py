@@ -65,7 +65,7 @@ def order_detail (request, id, format=None) :
 def population(request):
     if request.method == 'GET':
         
-        response = targeted_population('digitalq', 'current_order', ['id'], 'life_time')
+        response = t_population('digitalq', 'current_order', ['id'], 'life_time')
         
         return Response(response)
     
@@ -110,5 +110,16 @@ def connection(request):
         data = request.data
         
         response = connection_function(data.get("dish_id"), data.get("dish_name"), data.get("dish_code"), data.get("dish_price"), data.get("dish_type"), data.get("dish_specs"))
+        
+        return Response(response, status = status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'POST'])
+def postField(request):
+    
+    if request.method == 'POST':
+        data = request.data
+        
+        response = post_field(data.get("dish_code"), data.get("dish_name"), data.get("image_url"), data.get("qrcode_link"), data.get("time"), data.get("dish_price"), data.get("dish_type"), data.get("dish_specs"))
         
         return Response(response, status = status.HTTP_201_CREATED)
