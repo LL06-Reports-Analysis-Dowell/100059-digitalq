@@ -256,7 +256,7 @@ def connection_function(dish_id, dish_name, dish_code, dish_price, dish_type, di
 
 
 
-def post_field(dish_code, dish_name, image_url, qrcode_link, time, dish_price, dish_type, dish_specs):
+def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_price, dish_type, dish_specs):
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
