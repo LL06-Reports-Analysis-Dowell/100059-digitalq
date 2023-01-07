@@ -13,6 +13,7 @@ urlpatterns = [
     path('api/targeted_population/', views.targeted_populations),
     path('api/connection/', views.connection),
     path('api/post_population/', views.post_populations),
+    path('api/post_order/', views.post_orders),
     
 ]
 

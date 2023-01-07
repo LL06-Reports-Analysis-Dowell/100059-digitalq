@@ -123,3 +123,15 @@ def post_populations(request):
         response = post_population(data.get("dish_code"), data.get("dish_name"), data.get("image_url"), data.get("qrcode_link"), data.get("time"), data.get("dish_price"), data.get("dish_type"), data.get("dish_specs"))
         
         return Response(response, status = status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'POST'])
+def post_orders(request):
+    
+    if request.method == 'POST':
+        data = request.data
+        
+        response = post_order(data.get("user_id"), data.get("mobile_no"), data.get("name"), data.get("product"), data.get("image_url"), data.get("coupon_no"), data.get("qrcode_link"),
+            data.get("queue_no"), data.get("counter_no"), data.get("time"))
+        
+        return Response(response, status = status.HTTP_201_CREATED)
