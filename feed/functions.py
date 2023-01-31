@@ -329,8 +329,8 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
 
 
 
-def post_order(user_id, mobile_no, name, product, image_url, coupon_no, qrcode_link,
-            queue_no, counter_no, time):
+def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
+            queue, counter, delivery_time):
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
@@ -378,15 +378,15 @@ def post_order(user_id, mobile_no, name, product, image_url, coupon_no, qrcode_l
         "field": {
             "eventId" : r.text,
             "user_id" : user_id,
-            "mobile" : mobile_no,
+            "mobile" : mobile,
             "name" : name,
             "product" : product,
-            "product_image" : image_url,
-            "coupon" : coupon_no,
-            "dish_qrcode" : qrcode_link,
-            "queue" : queue_no,
-            "counter" : counter_no,
-            "delivery_time" : time,
+            "product_image" : product_image,
+            "coupon" : coupon,
+            "dish_qrcode" : qr_code,
+            "queue" : queue,
+            "counter" : counter,
+            "delivery_time" : delivery_time,
             },
         "update_field": {
             "order_nos": 21
