@@ -131,7 +131,7 @@ def post_orders(request):
     if request.method == 'POST':
         data = request.data
         
-        response = post_order(data.get("user_id"), data.get("mobile_no"), data.get("name"), data.get("product"), data.get("image_url"), data.get("coupon_no"), data.get("qrcode_link"),
-            data.get("queue_no"), data.get("counter_no"), data.get("time"))
+        response = post_order(data.get("user_id"), data.get("mobile"), data.get("name"), data.get("product"), data.get("product_image"), data.get("coupon"), data.get("qr_code"),
+            data.get("queue"), data.get("counter"), data.get("delivery_time"))
         
         return Response(response, status = status.HTTP_201_CREATED)
