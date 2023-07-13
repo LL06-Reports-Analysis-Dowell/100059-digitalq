@@ -14,6 +14,7 @@ urlpatterns = [
     path('api/connection/', views.connection),
     path('api/post_population/', views.post_populations),
     path('api/post_order/', views.post_orders),
+    path('api/create_event/', views.create_events),
     
 ]
 

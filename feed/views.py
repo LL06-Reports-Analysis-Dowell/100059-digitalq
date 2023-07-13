@@ -135,3 +135,10 @@ def post_orders(request):
             data.get("queue"), data.get("counter"), data.get("delivery_time"))
         
         return Response(response, status = status.HTTP_201_CREATED)
+
+@api_view(['GET', 'POST'])
+def create_events(request):
+    if request.method == 'POST':
+        data = request.data
+        response = create_event()
+        return Response(response, status = status.HTTP_201_CREATED)
