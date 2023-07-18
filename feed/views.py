@@ -140,5 +140,6 @@ def post_orders(request):
 def create_events(request):
     if request.method == 'POST':
         data = request.data
-        response = create_event()
+        response = get_event_id()
+        print('Event-ID======> ', response)
         return Response(response, status = status.HTTP_201_CREATED)

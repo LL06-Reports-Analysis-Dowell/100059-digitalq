@@ -145,41 +145,41 @@ def t_population(database, collection, fields, period):
     return result
 
 
-def get_event_id():
-    global event_id
-    dd=datetime.now()
-    time=dd.strftime("%d:%m:%Y,%H:%M:%S")
-    # url="https://100003.pythonanywhere.com/event_creation"
-    url="https://uxlivinglab.pythonanywhere.com/create_event"
+# def get_event_id():
+#     global event_id
+#     dd=datetime.now()
+#     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
+#     # url="https://100003.pythonanywhere.com/event_creation"
+#     url="https://uxlivinglab.pythonanywhere.com/create_event"
     
-    data={
-        "platformcode":"FB" ,
-        "citycode":"101",
-        "daycode":"0",
-        "dbcode":"pfm" ,
-        "ip_address":"192.168.0.41",
-        "login_id":"lav",
-        "session_id":"new",
-        "processcode":"1",
-        "regional_time":time,
-        "dowell_time":time,
-        "location":"22446576",
-        "objectcode":"1",
-        "instancecode":"100051",
-        "context":"afdafa ",
-        "document_id":"3004",
-        "rules":"some rules",
-        "status":"work",
-        "data_type": "learn",
-        "purpose_of_usage": "add",
-        "colour":"color value",
-        "hashtags":"hash tag alue",
-        "mentions":"mentions value",
-        "emojis":"emojis",
+#     data={
+#         "platformcode":"FB" ,
+#         "citycode":"101",
+#         "daycode":"0",
+#         "dbcode":"pfm" ,
+#         "ip_address":"192.168.0.41",
+#         "login_id":"lav",
+#         "session_id":"new",
+#         "processcode":"1",
+#         "regional_time":time,
+#         "dowell_time":time,
+#         "location":"22446576",
+#         "objectcode":"1",
+#         "instancecode":"100051",
+#         "context":"afdafa ",
+#         "document_id":"3004",
+#         "rules":"some rules",
+#         "status":"work",
+#         "data_type": "learn",
+#         "purpose_of_usage": "add",
+#         "colour":"color value",
+#         "hashtags":"hash tag alue",
+#         "mentions":"mentions value",
+#         "emojis":"emojis",
 
-    }
-    r=requests.post(url,json=data)
-    return r.text
+#     }
+#     r=requests.post(url,json=data)
+#     return r.text
 
 
 
@@ -306,7 +306,7 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
         "function_ID": "ABCDE",
         "command": "insert",
         "field": {
-            "eventId" : r.text,
+            "eventId" : r.text, # create_event(),
             "dish_code" : dish_code,
             "dish_name" : dish_name,
             "product_image" : image_url,
@@ -408,8 +408,7 @@ def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
     result = json.loads(response)
     return result
 
-def create_event():
-
+def get_event_id():
     url="https://uxlivinglab.pythonanywhere.com/create_event"
     dd = datetime.now()
     time = dd.strftime("%d:%m:%Y,%H:%M:%S")
@@ -443,41 +442,75 @@ def create_event():
     r=requests.post(url,json=data)
     event_id = ''
     if r.status_code == 201:
-        # return json.loads(r.text)
-        event_id = json.loads(r.text)['event_id']
+        return json.loads(r.text)['event_id']
+        # event_id = json.loads(r.text)['event_id']
     else:
         return json.loads(r.text)['error']
     
-    # url = "http://100002.pythonanywhere.com/" 
-    url = "http://uxlivinglab.pythonanywhere.com/" 
+    # # url = "http://100002.pythonanywhere.com/" 
+    # url = "http://uxlivinglab.pythonanywhere.com/" 
     
-    #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
-    payload = json.dumps({
-        "cluster": "digitalq",
-        "database": "digitalq",
-        "collection": "current_order",
-        "document": "current_order",
-        "team_member_ID": "1140",
-        "function_ID": "ABCDE",
-        "command": "insert",
-        "field": {
-            "eventId" : event_id,
-            },
-        "update_field": {
-            "order_nos": 21
-            },
-        "platform": "bangalore"
-        })
-    headers = {
-        'Content-Type': 'application/json'
-        }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    # #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
+    # payload = json.dumps({
+    #     "cluster": "digitalq",
+    #     "database": "digitalq",
+    #     "collection": "current_order",
+    #     "document": "current_order",
+    #     "team_member_ID": "1140",
+    #     "function_ID": "ABCDE",
+    #     "command": "insert",
+    #     "field": {
+    #         "eventId" : event_id,
+    #         },
+    #     "update_field": {
+    #         "order_nos": 21
+    #         },
+    #     "platform": "bangalore"
+    #     })
+    # headers = {
+    #     'Content-Type': 'application/json'
+    #     }
+    # response = requests.request("POST", url, headers=headers, data=payload)
 
-    response = response.text
+    # response = response.text
 
-    result = json.loads(response)
-    # print('Result ========>', result)
-    return result
+    # result = json.loads(response)
+    # # print('Result ========>', result)
+    # return result
 
+# def get_event_id():
+#     global event_id
+#     dd=datetime.now()
+#     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
+#     # url="https://100003.pythonanywhere.com/event_creation"
+#     url="https://uxlivinglab.pythonanywhere.com/create_event"
+    
+#     data={
+#         "platformcode":"FB" ,
+#         "citycode":"101",
+#         "daycode":"0",
+#         "dbcode":"pfm" ,
+#         "ip_address":"192.168.0.41",
+#         "login_id":"lav",
+#         "session_id":"new",
+#         "processcode":"1",
+#         "regional_time":time,
+#         "dowell_time":time,
+#         "location":"22446576",
+#         "objectcode":"1",
+#         "instancecode":"100051",
+#         "context":"afdafa ",
+#         "document_id":"3004",
+#         "rules":"some rules",
+#         "status":"work",
+#         "data_type": "learn",
+#         "purpose_of_usage": "add",
+#         "colour":"color value",
+#         "hashtags":"hash tag alue",
+#         "mentions":"mentions value",
+#         "emojis":"emojis",
 
+#     }
+#     r=requests.post(url,json=data)
+#     return r.text
 
