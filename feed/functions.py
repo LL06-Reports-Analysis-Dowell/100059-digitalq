@@ -6,6 +6,48 @@ from datetime import datetime
 
 from django.core import serializers
 
+
+
+def get_event_id():
+    url="https://uxlivinglab.pythonanywhere.com/create_event"
+    dd = datetime.now()
+    time = dd.strftime("%d:%m:%Y,%H:%M:%S")
+
+    data={
+        "platformcode":"FB" ,
+        "citycode":"101",
+        "daycode":"0",
+        "dbcode":"pfm" ,
+        "ip_address":"192.168.0.41", # get from dowell track my ip function
+        "login_id":"lav", #get from login function
+        "session_id":"new", #get from login function
+        "processcode":"1",
+        "location":"22446576", # get from dowell track my ip function
+        "regional_time": time,
+        "objectcode":"1",
+        "instancecode":"100051",
+        "context":"afdafa ",
+        "document_id":"3004",
+        "rules":"some rules",
+        "status":"work",
+        "data_type": "learn",
+        "purpose_of_usage": "add",
+        "colour":"color value",
+        "hashtags":"hash tag alue",
+        "mentions":"mentions value",
+        "emojis":"emojis",
+        "bookmarks": "a book marks"
+    }
+
+    r=requests.post(url,json=data)
+    event_id = ''
+    if r.status_code == 201:
+        return json.loads(r.text)['event_id']
+        # event_id = json.loads(r.text)['event_id']
+    else:
+        return json.loads(r.text)['error']
+
+
 def targeted_population(database, collection, fields, period):
 
     url = 'http://100032.pythonanywhere.com/api/targeted_population/'
@@ -268,7 +310,7 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
         "function_ID": "ABCDE",
         "command": "insert",
         "field": {
-            "eventId" : r.text, # create_event(),
+            "eventId" : get_event_id(), # r.text, # create_event(),
             "dish_code" : dish_code,
             "dish_name" : dish_name,
             "product_image" : image_url,
@@ -370,43 +412,5 @@ def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
     result = json.loads(response)
     return result
 
-def get_event_id():
-    url="https://uxlivinglab.pythonanywhere.com/create_event"
-    dd = datetime.now()
-    time = dd.strftime("%d:%m:%Y,%H:%M:%S")
-
-    data={
-        "platformcode":"FB" ,
-        "citycode":"101",
-        "daycode":"0",
-        "dbcode":"pfm" ,
-        "ip_address":"192.168.0.41", # get from dowell track my ip function
-        "login_id":"lav", #get from login function
-        "session_id":"new", #get from login function
-        "processcode":"1",
-        "location":"22446576", # get from dowell track my ip function
-        "regional_time": time,
-        "objectcode":"1",
-        "instancecode":"100051",
-        "context":"afdafa ",
-        "document_id":"3004",
-        "rules":"some rules",
-        "status":"work",
-        "data_type": "learn",
-        "purpose_of_usage": "add",
-        "colour":"color value",
-        "hashtags":"hash tag alue",
-        "mentions":"mentions value",
-        "emojis":"emojis",
-        "bookmarks": "a book marks"
-    }
-
-    r=requests.post(url,json=data)
-    event_id = ''
-    if r.status_code == 201:
-        return json.loads(r.text)['event_id']
-        # event_id = json.loads(r.text)['event_id']
-    else:
-        return json.loads(r.text)['error']
 
 
