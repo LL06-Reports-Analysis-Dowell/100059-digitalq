@@ -1,0 +1,42 @@
+table,
+td {
+  border: 1px solid black;
+  text-align: center;
+  height: 20px;
+}
+th {
+  border-left: 1px solid black;
+  background-color: black;
+  color: wheat;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 220px;
+}
+
+thead {
+  padding-right: 13px;
+  flex: 0 0 auto;
+}
+
+tbody {
+  flex: 1 1 auto;
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+tr {
+  height: 4px;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
