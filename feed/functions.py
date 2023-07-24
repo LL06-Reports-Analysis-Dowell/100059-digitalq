@@ -6,6 +6,48 @@ from datetime import datetime
 
 from django.core import serializers
 
+
+
+def get_event_id():
+    url="https://uxlivinglab.pythonanywhere.com/create_event"
+    dd = datetime.now()
+    time = dd.strftime("%d:%m:%Y,%H:%M:%S")
+
+    data={
+        "platformcode":"FB" ,
+        "citycode":"101",
+        "daycode":"0",
+        "dbcode":"pfm" ,
+        "ip_address":"192.168.0.41", # get from dowell track my ip function
+        "login_id":"lav", #get from login function
+        "session_id":"new", #get from login function
+        "processcode":"1",
+        "location":"22446576", # get from dowell track my ip function
+        "regional_time": time,
+        "objectcode":"1",
+        "instancecode":"100051",
+        "context":"afdafa ",
+        "document_id":"3004",
+        "rules":"some rules",
+        "status":"work",
+        "data_type": "learn",
+        "purpose_of_usage": "add",
+        "colour":"color value",
+        "hashtags":"hash tag alue",
+        "mentions":"mentions value",
+        "emojis":"emojis",
+        "bookmarks": "a book marks"
+    }
+
+    r=requests.post(url,json=data)
+    event_id = ''
+    if r.status_code == 201:
+        return json.loads(r.text)['event_id']
+        # event_id = json.loads(r.text)['event_id']
+    else:
+        return json.loads(r.text)['error']
+
+
 def targeted_population(database, collection, fields, period):
 
     url = 'http://100032.pythonanywhere.com/api/targeted_population/'
@@ -60,7 +102,8 @@ def targeted_population(database, collection, fields, period):
 
 
 def payload_api(number):
-    url = "http://100002.pythonanywhere.com/"
+    url = "http://uxlivinglab.pythonanywhere.com/"
+    
     number = str(number)
 
 
@@ -144,50 +187,14 @@ def t_population(database, collection, fields, period):
     return result
 
 
-def get_event_id():
-    global event_id
-    dd=datetime.now()
-    time=dd.strftime("%d:%m:%Y,%H:%M:%S")
-    url="https://100003.pythonanywhere.com/event_creation"
-
-    data={
-        "platformcode":"FB" ,
-        "citycode":"101",
-        "daycode":"0",
-        "dbcode":"pfm" ,
-        "ip_address":"192.168.0.41",
-        "login_id":"lav",
-        "session_id":"new",
-        "processcode":"1",
-        "regional_time":time,
-        "dowell_time":time,
-        "location":"22446576",
-        "objectcode":"1",
-        "instancecode":"100051",
-        "context":"afdafa ",
-        "document_id":"3004",
-        "rules":"some rules",
-        "status":"work",
-        "data_type": "learn",
-        "purpose_of_usage": "add",
-        "colour":"color value",
-        "hashtags":"hash tag alue",
-        "mentions":"mentions value",
-        "emojis":"emojis",
-
-    }
-    r=requests.post(url,json=data)
-    return r.text
-
-
-
 def connection_function(dish_id, dish_name, dish_code, dish_price, dish_type, dish_specs):   
 
 
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
-    url="https://100003.pythonanywhere.com/event_creation"
+    # url="https://100003.pythonanywhere.com/event_creation"
+    url="https://uxlivinglab.pythonanywhere.com/create_event"
 
     data={
         "platformcode":"FB" ,
@@ -218,7 +225,7 @@ def connection_function(dish_id, dish_name, dish_code, dish_price, dish_type, di
     r=requests.post(url,json=data)
 
 
-    url = "http://100002.pythonanywhere.com/" 
+    url = "http://uxlivinglab.pythonanywhere.com/" 
     #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
     payload = json.dumps({
         "cluster": "socialmedia",
@@ -260,7 +267,8 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
-    url="https://100003.pythonanywhere.com/event_creation"
+    # url="https://100003.pythonanywhere.com/event_creation"
+    url="https://uxlivinglab.pythonanywhere.com/create_event"
 
     data={
         "platformcode":"FB" ,
@@ -291,7 +299,7 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
     r=requests.post(url,json=data)
     
     
-    url = "http://100002.pythonanywhere.com/" 
+    url = "http://uxlivinglab.pythonanywhere.com/" 
     #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
     payload = json.dumps({
         "cluster": "digitalq",
@@ -302,7 +310,7 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
         "function_ID": "ABCDE",
         "command": "insert",
         "field": {
-            "eventId" : r.text,
+            "eventId" : get_event_id(), # r.text, # create_event(),
             "dish_code" : dish_code,
             "dish_name" : dish_name,
             "product_image" : image_url,
@@ -334,7 +342,8 @@ def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
-    url="https://100003.pythonanywhere.com/event_creation"
+    # url="https://100003.pythonanywhere.com/event_creation"
+    url="https://uxlivinglab.pythonanywhere.com/create_event"
 
     data={
         "platformcode":"FB" ,
@@ -365,7 +374,7 @@ def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
     r=requests.post(url,json=data)
     
     
-    url = "http://100002.pythonanywhere.com/" 
+    url = "http://uxlivinglab.pythonanywhere.com/" 
     #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
     payload = json.dumps({
         "cluster": "digitalq",
@@ -402,9 +411,6 @@ def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
 
     result = json.loads(response)
     return result
-
-
-
 
 
 
