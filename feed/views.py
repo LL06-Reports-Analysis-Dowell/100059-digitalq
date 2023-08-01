@@ -158,3 +158,22 @@ def get_single_dish_order(request, dish_event_id):
     else:
         content = {'status_code': 404, 'error': 'The resource was not found'}
         return Response(content, status=status.HTTP_404_NOT_FOUND)
+
+# get all same type dish order
+@api_view(['GET'])
+def get_same_type_dish_order(request, dish_order_type):
+    content = {}
+    if request.method == 'GET':
+        obj = t_population('digitalq', 'current_order', ['id'], 'life_time')
+        # print(f'================== Dish type is {dish_order_type}\n')
+        same_type_dish = []
+        for dish in obj['normal']['data'][0]:
+            if dish['dish_type'] == dish_order_type:
+                same_type_dish.append(dish)
+                # print('same_type_dish =========',same_type_dish)
+        return Response(same_type_dish, status=status.HTTP_200_OK)
+
+    else:
+        content = {'status_code': 404, 'error': 'The resource was not found'}
+        print('error============')
+        return Response(content, status=status.HTTP_404_NOT_FOUND)
