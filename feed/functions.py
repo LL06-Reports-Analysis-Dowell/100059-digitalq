@@ -138,6 +138,7 @@ def payload_api(number):
 def t_population(database, collection, fields, period):
     
     url = 'http://100032.pythonanywhere.com/api/targeted_population/'
+    # url = 'https://uxlivinglab.pythonanywhere.com/create_event'
 
     database_details = {
         'database_name': 'mongodb',
