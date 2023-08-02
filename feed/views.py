@@ -161,9 +161,11 @@ def get_single_dish_order(request, dish_event_id):
 
 # get all same type dish order
 @api_view(['GET'])
-def get_same_type_dish_order(request, dish_order_type):
+def get_same_type_dish_order(request):
     content = {}
     if request.method == 'GET':
+        dish_order_type = request.GET.get('dish_type')
+        print('type ========== ', dish_order_type)
         obj = t_population('digitalq', 'current_order', ['id'], 'life_time')
         # print(f'================== Dish type is {dish_order_type}\n')
         same_type_dish = []
