@@ -135,54 +135,86 @@ def payload_api(number):
     return result
 
 
-def t_population(database, collection, fields, period):
+# def t_population(database, collection, fields, period):
     
-    url = 'http://100032.pythonanywhere.com/api/targeted_population/'
-    # url = 'https://uxlivinglab.pythonanywhere.com/create_event'
+#     # url = 'http://100032.pythonanywhere.com/api/dowellconnection/'
+#     url = 'http://100032.pythonanywhere.com/api/targeted_population/'
+#     # url = 'https://uxlivinglab.pythonanywhere.com/create_event'
 
-    database_details = {
-        'database_name': 'mongodb',
-        'collection': 'dish_list',
-        'database': 'digitalq',
-        'fields': ['dish_name']
+#     database_details = {
+#         'database_name': 'mongodb',
+#         'collection': 'dish_list',
+#         'database': 'digitalq',
+#         'fields': ['dish_name']
+#     }
+
+#     # number of variables for sampling rule
+#     number_of_variables = -1
+
+#     time_input = {
+#         'column_name': 'Date',
+#         'split': 'week',
+#         'period': period,
+#         'start_point': '2021/01/08',
+#         'end_point': '2022/06/25',
+#     }
+
+#     stage_input_list = [
+#     ]
+
+#     # distribution input
+#     distribution_input={
+#         'normal': 1,
+#         'poisson':0,
+#         'binomial':0,
+#         'bernoulli':0
+
+#     }
+
+#     request_data={
+#         'database_details': database_details,
+#         'distribution_input': distribution_input,
+#         'number_of_variable':number_of_variables,
+#         'stages':stage_input_list,
+#         'time_input':time_input,
+#     }
+
+#     headers = {'content-type': 'application/json'}
+
+#     response = requests.post(url, json=request_data,headers=headers)
+
+#     response = response.text
+
+#     result = json.loads(response)
+#     return result
+
+def get_all_dish_list():
+    
+    url = "http://uxlivinglab.pythonanywhere.com"
+
+    payload = json.dumps({
+       "cluster": "digitalq",
+       "database": "digitalq",
+       "collection": "dish_list",
+       "document": "dish_list",
+       "team_member_ID": "1126",
+       "function_ID": "ABCDE",
+       "command": "fetch",
+       "field": {
+              "product_image": "google.com",
+       },
+       "update_field": {},
+       "platform": "bangalore"
+    })
+
+    headers = {
+       'Content-Type': 'application/json'
     }
 
-    # number of variables for sampling rule
-    number_of_variables = -1
+    response = requests.request("POST", url, headers=headers, data=payload)
 
-    time_input = {
-        'column_name': 'Date',
-        'split': 'week',
-        'period': period,
-        'start_point': '2021/01/08',
-        'end_point': '2022/06/25',
-    }
-
-    stage_input_list = [
-    ]
-
-    # distribution input
-    distribution_input={
-        'normal': 1,
-        'poisson':0,
-        'binomial':0,
-        'bernoulli':0
-
-    }
-
-    request_data={
-        'database_details': database_details,
-        'distribution_input': distribution_input,
-        'number_of_variable':number_of_variables,
-        'stages':stage_input_list,
-        'time_input':time_input,
-    }
-
-    headers = {'content-type': 'application/json'}
-
-    response = requests.post(url, json=request_data,headers=headers)
-
-    response = response.text
+    # print(response.json())
+    response = response.json()
 
     result = json.loads(response)
     return result
