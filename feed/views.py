@@ -164,12 +164,15 @@ def get_same_type_dish_order(request):
     content = {}
     if request.method == 'GET':
         dish_order_type = request.GET.get('dish_type')
-        # print('type ========== ', dish_order_type)
+        # print('type ========== ', type(dish_order_type))
         obj = get_all_dish_list()
-        # print('obj ========== ', obj['data'][0]['dish_type'])
+        # if nothing passed, then show all menu items 
+        if dish_order_type=='':
+            return Response(obj, status=status.HTTP_200_OK)
+
         same_type_dish = []
         for dish in obj['data']:
-            if dish['dish_type'] == dish_order_type:
+            if dish['dish_type'].lower() == dish_order_type.lower():
                 same_type_dish.append(dish)
         return Response(same_type_dish, status=status.HTTP_200_OK)
 
