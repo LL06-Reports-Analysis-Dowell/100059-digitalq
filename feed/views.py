@@ -163,7 +163,7 @@ def get_single_dish_order(request, dish_event_id):
 def get_same_type_dish_order(request):
     content = {}
     if request.method == 'GET':
-        dish_order_type = request.GET.get('dish_type')
+        dish_order_type = request.GET.get('dish_type', '')
         # print('type ========== ', type(dish_order_type))
         obj = get_all_dish_list()
         # if nothing passed, then show all menu items 
