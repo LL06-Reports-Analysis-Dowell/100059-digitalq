@@ -201,7 +201,7 @@ def get_all_dish_list():
        "function_ID": "ABCDE",
        "command": "fetch",
        "field": {
-              "product_image": "google.com",
+              
        },
        "update_field": {},
        "platform": "bangalore"
