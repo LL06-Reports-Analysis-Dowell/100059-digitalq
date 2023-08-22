@@ -71,7 +71,7 @@ def get_dish_order_view(request):
     if request.method == 'GET':
 
         response = get_all_order_list()
-        print('all dish order ======>', response)
+        # print('all dish order ======>', response)
         return Response(response)
 
 @api_view(['GET'])
