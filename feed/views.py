@@ -66,6 +66,13 @@ def population(request):
         # print('all dish order ======>', response)
         return Response(response)
 
+@api_view(['GET'])
+def get_dish_order_view(request):
+    if request.method == 'GET':
+
+        response = get_all_order_list()
+        print('all dish order ======>', response)
+        return Response(response)
 
 @api_view(['GET'])
 def payload_param(request, number):
