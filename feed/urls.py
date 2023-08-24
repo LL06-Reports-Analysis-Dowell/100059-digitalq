@@ -22,7 +22,8 @@ urlpatterns = [
 
     ## order API
     path('api/post_order/', views.post_orders), # create order
-    path('api/order/', views.get_dish_order_view), # get all orders
+    path('api/order/', views.get_dish_order_view), # get all orders 
+    path('api/order/coupon/', views.get_order_by_coupon_view), # get all orders coupon
     path('api/create_event/', views.create_events), # for testing 
 
 ]

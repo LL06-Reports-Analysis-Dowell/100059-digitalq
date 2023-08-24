@@ -450,7 +450,7 @@ def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
         "function_ID": "ABCDE",
         "command": "insert",
         "field": {
-            "eventId" : r.text,
+            "eventId" : get_event_id(), # r.text, # create_event()
             "user_id" : user_id,
             "mobile" : mobile,
             "name" : name,

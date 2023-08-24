@@ -165,7 +165,7 @@ def get_single_dish_order(request, dish_event_id):
         content = {'status_code': 404, 'error': 'The resource was not found'}
         return Response(content, status=status.HTTP_404_NOT_FOUND)
 
-# get all same type dish order
+# get all same type dish menu
 @api_view(['GET'])
 def get_same_type_dish_order(request):
     content = {}
@@ -182,6 +182,29 @@ def get_same_type_dish_order(request):
             if dish['dish_type'].lower() == dish_order_type.lower():
                 same_type_dish.append(dish)
         return Response(same_type_dish, status=status.HTTP_200_OK)
+
+    else:
+        content = {'status_code': 404, 'error': 'The resource was not found'}
+        print('error============')
+        return Response(content, status=status.HTTP_404_NOT_FOUND)
+
+# get all order by coupon
+@api_view(['GET'])
+def get_order_by_coupon_view(request):
+    content = {}
+    if request.method == 'GET':
+        dish_order_coupon = request.GET.get('coupon', '')
+        obj = get_all_order_list()
+        # if nothing passed, then show all order 
+        if dish_order_coupon=='':
+            return Response(obj, status=status.HTTP_200_OK)
+
+        same_type_order = []
+        dish_order_coupon = int(dish_order_coupon)
+        for dish in obj['data']:
+            if dish['coupon'] == dish_order_coupon:
+                same_type_order.append(dish)
+        return Response(same_type_order, status=status.HTTP_200_OK)
 
     else:
         content = {'status_code': 404, 'error': 'The resource was not found'}
