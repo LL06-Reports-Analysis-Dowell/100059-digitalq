@@ -188,6 +188,30 @@ def get_same_type_dish_order(request):
         print('error============')
         return Response(content, status=status.HTTP_404_NOT_FOUND)
 
+# get all dish_code wise dish menu
+@api_view(['GET'])
+def get_dish_code_type_dish_order(request):
+    content = {}
+    if request.method == 'GET':
+        dish_order_type = request.GET.get('dish_code', '')
+        # print('type ========== ', type(dish_order_type))
+        obj = get_all_dish_list()
+        # if nothing passed, then show all menu items 
+        if dish_order_type=='':
+            return Response(obj, status=status.HTTP_200_OK)
+
+        same_type_dish = []
+        for dish in obj['data']:
+            if dish['dish_code'].lower() == dish_order_type.lower():
+                same_type_dish.append(dish)
+        return Response(same_type_dish, status=status.HTTP_200_OK)
+
+    else:
+        content = {'status_code': 404, 'error': 'The resource was not found'}
+        print('error============')
+        return Response(content, status=status.HTTP_404_NOT_FOUND)
+
+
 # get all order by coupon
 @api_view(['GET'])
 def get_order_by_coupon_view(request):
