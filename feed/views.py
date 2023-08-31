@@ -202,14 +202,12 @@ def get_dish_code_type_dish_order(request):
 
         same_type_dish = []
         for dish in obj['data']:
-            if dish['dish_code'].lower() == dish_order_type.lower():
-                same_type_dish.append(dish)
-        return Response(same_type_dish, status=status.HTTP_200_OK)
-
-    else:
+            if dish['dish_code'] == dish_order_type:
+                return Response(dish, status=status.HTTP_200_OK)
         content = {'status_code': 404, 'error': 'The resource was not found'}
-        print('error============')
+        # print('error============')
         return Response(content, status=status.HTTP_404_NOT_FOUND)
+
 
 
 # get all order by coupon
