@@ -328,7 +328,7 @@ def connection_function(dish_id, dish_name, dish_code, dish_price, dish_type, di
 
 
 
-def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_price, dish_type, dish_specs):
+def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_price, dish_type, dish_specs, quantity_available):
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
@@ -383,7 +383,8 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
             "delivery_time" : time,
             "dish_price" : dish_price,
             "dish_type" : dish_type,
-            "dish_specs" : dish_specs
+            "dish_specs" : dish_specs,
+            "quantity_available": quantity_available
             },
         "update_field": {
             "order_nos": 21
