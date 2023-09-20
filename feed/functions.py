@@ -374,11 +374,26 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, master_link, t
     json_formate = json.loads(text_formate)
     print('qr ====================================', json_formate)
     qrcode_id = json_formate['qrcodes'][0]['qrcode_id']
-    print('qr_id ====================================', qrcode_id)
-    qrcode_activation = requests.put(url = "https://www.qrcodereviews.uxlivinglab.online/api/v1/activate-qr-code/{qrcode_id}/")
-    text_formate = qrcode_activation.text
-    print('text_formate ===========', text_formate)
-    
+    print('qrcode_id ====================================', qrcode_id)
+    qrcode_image_url = ''
+    try:
+        url = f"https://www.qrcodereviews.uxlivinglab.online/api/v1/activate-qr-code/{qrcode_id}/"
+        qrcode_activation = requests.put(url)
+        if qrcode_activation.status_code == 200:
+            text_formate = qrcode_activation.text
+            try: 
+        # print('text_formate ===========', text_formate)
+                json_formate = json.loads(text_formate)
+                print('json_formate ===========', json_formate)
+                qrcode_image_url = json_formate['response']['qrcode_image_url']
+                print('qrcode_image_url ===========', qrcode_image_url)
+            except json.JSONDecodeError as e:
+                print('Error parsing JSON:========> ', e)
+        else:
+            # Handle unsuccessful response (e.g., status code other than 200)
+            print(f"Activation failed with status code {qrcode_activation.status_code}")
+    except requests.exceptions.RequestException as e:
+        print('Request error:==============> ', e)
     
     url = "http://uxlivinglab.pythonanywhere.com/" 
     #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
@@ -395,7 +410,9 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, master_link, t
             "dish_code" : dish_code,
             "dish_name" : dish_name,
             "product_image" : image_url,
+            # "dish_qrcode" : qrcode_image_url,
             "dish_qrcode" : qrcode_link,
+            "new_dish_qrcode" : qrcode_image_url,  #added by me
             "delivery_time" : time,
             "dish_price" : dish_price,
             "dish_type" : dish_type,
@@ -410,8 +427,8 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, master_link, t
     headers = {
         'Content-Type': 'application/json'
         }
-    # response = requests.request("POST", url, headers=headers, data=payload)
-    response ='ok man'
+    response = requests.request("POST", url, headers=headers, data=payload)
+    # response ='ok man'
     response = response.text
 
     result = json.loads(response)
