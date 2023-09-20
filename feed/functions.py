@@ -328,7 +328,7 @@ def connection_function(dish_id, dish_name, dish_code, dish_price, dish_type, di
 
 
 
-def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_price, dish_type, dish_specs, quantity_available):
+def post_population(dish_code, dish_name, image_url, qrcode_link, master_link, time, dish_price, dish_type, dish_specs, quantity_available):
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
@@ -362,6 +362,22 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
 
     }
     r=requests.post(url,json=data)
+    # print('master link last ======', dish_code, dish_name, qrcode_link, dish_price, master_link)
+    dt = {
+        "qrcode_type": "Link",
+        "quantity": 1,
+        "master_link": master_link
+    }
+    # print('data ==============', dt)
+    qrcode_generator = requests.post(url = "https://www.qrcodereviews.uxlivinglab.online/api/v1/qr-code/", data = dt)
+    text_formate = qrcode_generator.text
+    json_formate = json.loads(text_formate)
+    print('qr ====================================', json_formate)
+    qrcode_id = json_formate['qrcodes'][0]['qrcode_id']
+    print('qr_id ====================================', qrcode_id)
+    qrcode_activation = requests.put(url = "https://www.qrcodereviews.uxlivinglab.online/api/v1/activate-qr-code/{qrcode_id}/")
+    text_formate = qrcode_activation.text
+    print('text_formate ===========', text_formate)
     
     
     url = "http://uxlivinglab.pythonanywhere.com/" 
@@ -394,8 +410,8 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
     headers = {
         'Content-Type': 'application/json'
         }
-    response = requests.request("POST", url, headers=headers, data=payload)
-
+    # response = requests.request("POST", url, headers=headers, data=payload)
+    response ='ok man'
     response = response.text
 
     result = json.loads(response)
