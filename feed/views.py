@@ -122,8 +122,18 @@ def post_populations(request):
     if request.method == 'POST':
         data = request.data
 
-        response = post_population(data.get("dish_code"), data.get("dish_name"), data.get("image_url"), data.get(
-            "qrcode_link"),data.get("master_link"), data.get("time"), data.get("dish_price"), data.get("dish_type"), data.get("dish_specs"), data.get("quantity_available"))
+        response = post_population(
+            data.get("dish_code"), 
+            data.get("dish_name"), 
+            data.get("image_url"), 
+            # data.get("qrcode_link"),
+            data.get("master_link"), 
+            data.get("time"), 
+            data.get("dish_price"), 
+            data.get("dish_type"), 
+            data.get("dish_specs"), 
+            data.get("quantity_available")
+            )
 
         return Response(response, status=status.HTTP_201_CREATED)
 
