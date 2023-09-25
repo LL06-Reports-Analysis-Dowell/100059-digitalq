@@ -360,7 +360,7 @@ def generate_qrcode(master_link):
     return qrcode_image_url
 
 
-def post_population(dish_code, dish_name, image_url, master_link, time, dish_price, dish_type, dish_specs, quantity_available):
+def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_price, dish_type, dish_specs, quantity_available):
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
@@ -396,7 +396,7 @@ def post_population(dish_code, dish_name, image_url, master_link, time, dish_pri
     r=requests.post(url,json=data)
     # print('master link last ======', dish_code, dish_name, qrcode_link, dish_price, master_link)
     
-    qrcode_image_url = generate_qrcode(master_link)
+    qrcode_image_url = generate_qrcode(qrcode_link)
 
     url = "http://uxlivinglab.pythonanywhere.com/" 
     #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
@@ -413,9 +413,7 @@ def post_population(dish_code, dish_name, image_url, master_link, time, dish_pri
             "dish_code" : dish_code,
             "dish_name" : dish_name,
             "product_image" : image_url,
-            # "dish_qrcode" : qrcode_image_url,
-            # "dish_qrcode" : qrcode_link,
-            "new_dish_qrcode" : qrcode_image_url,  #added by me
+            "dish_qrcode" : qrcode_image_url,
             "delivery_time" : time,
             "dish_price" : dish_price,
             "dish_type" : dish_type,
