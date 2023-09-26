@@ -217,6 +217,18 @@ def get_dish_code_type_dish_order(request):
         # print('error============')
         return Response(content, status=status.HTTP_404_NOT_FOUND)
 
+# get id wise dish menu
+@api_view(['GET'])
+def get_id_wise_dish(request, pk):
+    content = {}
+    if request.method == 'GET':
+        obj = get_all_dish_list()
+        for dish in obj['data']:
+            if dish['_id'] == pk:
+                return Response(dish, status=status.HTTP_200_OK)
+        content = {'status_code': 404, 'error': 'The resource was not found'}
+        # print('error============')
+        return Response(content, status=status.HTTP_404_NOT_FOUND)
 
 
 # get all order by coupon
