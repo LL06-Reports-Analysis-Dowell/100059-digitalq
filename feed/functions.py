@@ -3,7 +3,7 @@ from unittest import result
 import requests
 import pprint
 from datetime import datetime 
-
+import uuid
 from django.core import serializers
 
 
@@ -325,7 +325,8 @@ def connection_function(dish_id, dish_name, dish_code, dish_price, dish_type, di
     return result
 
 
-def generate_qrcode(master_link):
+def generate_qrcode(uid):
+    master_link = f"http://100059.pythonanywhere.com/api/population/{uid}/"
     dt = {
         "qrcode_type": "Link",
         "quantity": 1,
@@ -360,10 +361,12 @@ def generate_qrcode(master_link):
     return qrcode_image_url
 
 
-def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_price, dish_type, dish_specs, quantity_available):
+def post_population(dish_code, dish_name, image_url, time, dish_price, dish_type, dish_specs, quantity_available):
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
+    uid = uuid.uuid4()
+    uid = str(uid)
     # url="https://100003.pythonanywhere.com/event_creation"
     url="https://uxlivinglab.pythonanywhere.com/create_event"
 
@@ -396,7 +399,7 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
     r=requests.post(url,json=data)
     # print('master link last ======', dish_code, dish_name, qrcode_link, dish_price, master_link)
     
-    qrcode_image_url = generate_qrcode(qrcode_link)
+    qrcode_image_url = generate_qrcode(uid)
 
     url = "http://uxlivinglab.pythonanywhere.com/" 
     #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
@@ -409,10 +412,12 @@ def post_population(dish_code, dish_name, image_url, qrcode_link, time, dish_pri
         "function_ID": "ABCDE",
         "command": "insert",
         "field": {
+            "_id" : uid,
             "eventId" : get_event_id(), # r.text, # create_event(),
             "dish_code" : dish_code,
             "dish_name" : dish_name,
             "product_image" : image_url,
+            # "dish_qrcode" : '',
             "dish_qrcode" : qrcode_image_url,
             "delivery_time" : time,
             "dish_price" : dish_price,
