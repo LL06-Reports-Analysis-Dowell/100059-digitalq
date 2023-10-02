@@ -361,7 +361,7 @@ def generate_qrcode(uid):
     return qrcode_image_url
 
 
-def post_population(dish_code, dish_name, image_url, time, dish_price, dish_type, dish_specs, quantity_available):
+def post_population(dish_code, org_id, dish_name, image_url, time, dish_price, dish_type, dish_specs, quantity_available):
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
@@ -415,6 +415,7 @@ def post_population(dish_code, dish_name, image_url, time, dish_price, dish_type
             "_id" : uid,
             "eventId" : get_event_id(), # r.text, # create_event(),
             "dish_code" : dish_code,
+            "org_id" : org_id,
             "dish_name" : dish_name,
             "product_image" : image_url,
             # "dish_qrcode" : '',

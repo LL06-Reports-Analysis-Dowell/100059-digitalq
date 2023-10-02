@@ -124,6 +124,7 @@ def post_populations(request):
 
         response = post_population(
             data.get("dish_code"), 
+            data.get("org_id"), 
             data.get("dish_name"), 
             data.get("image_url"),  
             data.get("time"), 
