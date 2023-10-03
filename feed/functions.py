@@ -399,7 +399,8 @@ def post_population(dish_code, org_id, dish_name, image_url, time, dish_price, d
     r=requests.post(url,json=data)
     # print('master link last ======', dish_code, dish_name, qrcode_link, dish_price, master_link)
     
-    qrcode_image_url = generate_qrcode(uid)
+    qrcode_image_url = 'google.com/qrcode', 
+    # qrcode_image_url = generate_qrcode(uid)
 
     url = "http://uxlivinglab.pythonanywhere.com/" 
     #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
