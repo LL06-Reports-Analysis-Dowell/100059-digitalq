@@ -13,8 +13,8 @@ urlpatterns = [
     # retrive dish data
     path('api/population/', views.population), # retrive all dish
     path('api/population/<str:dish_event_id>', views.get_single_dish_order), # retrive single dish order
-    path('api/population/type/', views.get_same_type_dish_order), # Retrieve Dish Order by dish type
-    path('api/population/dish_code/', views.get_dish_code_type_dish_order), # Retrieve Dish Order by dish code
+    path('api/population/type/', views.get_same_type_dish_order), # Retrieve Dish list by dish type
+    path('api/population/dish_code/', views.get_dish_code_type_dish_order), # Retrieve Dish list by dish code
     path('api/population/<str:pk>/', views.get_id_wise_dish), # Retrieve id wise dish
 
     path('api/payload/', views.payload),

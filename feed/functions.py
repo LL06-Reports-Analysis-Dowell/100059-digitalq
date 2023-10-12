@@ -365,8 +365,8 @@ def post_population(dish_code, org_id, dish_name, image_url, time, dish_price, d
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
-    uid = uuid.uuid4()
-    uid = str(uid)
+    # uid = uuid.uuid4()
+    # uid = str(uid)
     # url="https://100003.pythonanywhere.com/event_creation"
     url="https://uxlivinglab.pythonanywhere.com/create_event"
 
@@ -413,14 +413,14 @@ def post_population(dish_code, org_id, dish_name, image_url, time, dish_price, d
         "function_ID": "ABCDE",
         "command": "insert",
         "field": {
-            "_id" : uid,
+            # "_id" : uid,
             "eventId" : get_event_id(), # r.text, # create_event(),
             "dish_code" : dish_code,
             "org_id" : org_id,
             "dish_name" : dish_name,
             "product_image" : image_url,
-            # "dish_qrcode" : '',
-            "dish_qrcode" : qrcode_image_url,
+            "dish_qrcode" : '',
+            # "dish_qrcode" : qrcode_image_url,
             "delivery_time" : time,
             "dish_price" : dish_price,
             "dish_type" : dish_type,

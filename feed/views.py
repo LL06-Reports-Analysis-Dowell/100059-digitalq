@@ -164,8 +164,10 @@ def get_single_dish_order(request, dish_event_id):
     content = {}
     if request.method == 'GET':
         obj = get_all_dish_list()
-        # print(f'\nDish Event ID is {dish_event_id}\n')
+        # print(f'\n dish event_id =============> {dish_event_id}\n')
+        # print('obj ================> ', obj)
         for dish_event in obj['data']:
+            # print('Dish event id =========> ', type(dish_event['eventId']))
             if dish_event['eventId'] == dish_event_id:
                 # print(f'\n{dish_event}\n')
                 return Response(dish_event, status=status.HTTP_200_OK)
