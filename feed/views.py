@@ -160,20 +160,25 @@ def create_events(request):
 
 # get indivisual dish order using event id
 @api_view(['GET'])
-def get_single_dish_order(request, dish_event_id):
+def get_eventid_wise_dish(request):
     content = {}
     if request.method == 'GET':
+        dish_event_id = request.GET.get('eventid', '')
+        # print('type ========== ', type(dish_order_type))
         obj = get_all_dish_list()
-        # print(f'\n dish event_id =============> {dish_event_id}\n')
-        # print('obj ================> ', obj)
-        for dish_event in obj['data']:
-            # print('Dish event id =========> ', type(dish_event['eventId']))
-            if dish_event['eventId'] == dish_event_id:
-                # print(f'\n{dish_event}\n')
-                return Response(dish_event, status=status.HTTP_200_OK)
+        # if nothing passed, then show all menu items 
+        if dish_event_id=='':
+            return Response(obj, status=status.HTTP_200_OK)
+
+        # same_type_dish = []
+        for dish in obj['data']:
+            if dish['eventId'] == dish_event_id:
+                # same_type_dish.append(dish)
+                return Response(dish, status=status.HTTP_200_OK)
 
     else:
         content = {'status_code': 404, 'error': 'The resource was not found'}
+        print('error============')
         return Response(content, status=status.HTTP_404_NOT_FOUND)
 
 # get all same type dish menu
