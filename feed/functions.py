@@ -442,6 +442,126 @@ def post_population(dish_code, org_id, dish_name, image_url, time, dish_price, d
     result = json.loads(response)
     return result
 
+# update ==2
+# get all dish information
+def update_population_2(pk, dish_code, org_id, dish_name, image_url, time, dish_price, dish_type, dish_specs, quantity_available):
+    
+    url = "http://uxlivinglab.pythonanywhere.com"
+
+    payload = json.dumps({
+       "cluster": "digitalq",
+       "database": "digitalq",
+       "collection": "dish_list",
+       "document": "dish_list",
+       "team_member_ID": "1126",
+       "function_ID": "ABCDE",
+       "command": "update",
+       "field": {
+              "_id": pk,
+       },
+       "update_field": {
+            # "eventId": ,
+            "dish_code": dish_code,
+            "org_id": org_id,
+            "dish_name": dish_name,
+            "product_image": image_url,
+            # "dish_qrcode": "",
+            # "delivery_time": "12:10:2023,15:58:42",
+            "dish_price": dish_price,
+            "dish_type": dish_type,
+            "dish_specs": dish_specs,
+            "quantity_available": quantity_available
+       },
+       "platform": "bangalore"
+    })
+
+    headers = {
+       'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    # print(response.json())
+    response = response.json()
+
+    result = json.loads(response)
+    return result
+
+# update 
+def update_population(pk, dish_code, org_id, dish_name, image_url, time, dish_price, dish_type, dish_specs, quantity_available):
+    global event_id
+    dd=datetime.now()
+    # time=dd.strftime("%d:%m:%Y,%H:%M:%S")
+    # url="https://100003.pythonanywhere.com/event_creation"
+    url="https://uxlivinglab.pythonanywhere.com/create_event"
+
+    data={
+        "platformcode":"FB" ,
+        "citycode":"101",
+        "daycode":"0",
+        "dbcode":"pfm" ,
+        "ip_address":"192.168.0.41",
+        "login_id":"lav",
+        "session_id":"new",
+        "processcode":"1",
+        "regional_time":time,
+        "dowell_time":time,
+        "location":"22446576",
+        "objectcode":"1",
+        "instancecode":"100051",
+        "context":"afdafa ",
+        "document_id":"3004",
+        "rules":"some rules",
+        "status":"work",
+        "data_type": "learn",
+        "purpose_of_usage": "add",
+        "colour":"color value",
+        "hashtags":"hash tag alue",
+        "mentions":"mentions value",
+        "emojis":"emojis",
+
+    }
+    r=requests.post(url, json=data)
+    # print('master link last ======', dish_code, dish_name, qrcode_link, dish_price, master_link)
+
+    url = "http://uxlivinglab.pythonanywhere.com/" 
+    #searchstring="ObjectId"+"("+"'"+"6139bd4969b0c91866e40551"+"'"+")"
+    payload = json.dumps({
+        "cluster": "digitalq",
+        "database": "digitalq",
+        "collection": "dish_list",
+        "document": "dish_list",
+        "team_member_ID": "1126",
+        "function_ID": "ABCDE",
+        "command": "update",
+        "field": {
+            "_id" : pk,
+            # "eventId" : get_event_id(), # r.text, # create_event(),
+            "dish_code" : dish_code,
+            "org_id" : org_id,
+            "dish_name" : dish_name,
+            "product_image" : image_url,
+            "dish_qrcode" : '',
+            "delivery_time" : time,
+            "dish_price" : dish_price,
+            "dish_type" : dish_type,
+            "dish_specs" : dish_specs,
+            "quantity_available": quantity_available
+            },
+        "update_field": {
+            "order_nos": 21
+            },
+        "platform": "bangalore"
+        })
+    headers = {
+        'Content-Type': 'application/json'
+        }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    # response ='ok man'
+    response = response.text
+
+    result = json.loads(response)
+    return result
 
 
 def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,

@@ -136,6 +136,44 @@ def post_populations(request):
 
         return Response(response, status=status.HTTP_201_CREATED)
 
+@api_view(['GET', 'PUT'])
+def update_dish(request, pk):
+
+    if request.method == 'PUT':
+        data = request.data
+
+        response = update_population_2(
+            pk,
+            data.get("dish_code"), 
+            data.get("org_id"), 
+            data.get("dish_name"), 
+            data.get("image_url"),  
+            data.get("time"), 
+            data.get("dish_price"), 
+            data.get("dish_type"), 
+            data.get("dish_specs"), 
+            data.get("quantity_available")
+            )
+        return Response(response, status=status.HTTP_201_CREATED)
+
+# delete dish 
+@api_view(['DELETE'])
+def delete_dish(request, pk):
+    content = {}
+    if request.method == 'DELETE':
+        obj = get_all_dish_list()
+
+        # same_type_dish = []
+        for dish in obj['data']:
+            if dish['_id'] == pk:
+                dish.delete()
+                return Response(dish, status=status.HTTP_200_OK)
+
+    else:
+        content = {'status_code': 404, 'error': 'The resource was not found'}
+        print('error============')
+        return Response(content, status=status.HTTP_404_NOT_FOUND)
+
 
 @api_view(['GET', 'POST'])
 def post_orders(request):
