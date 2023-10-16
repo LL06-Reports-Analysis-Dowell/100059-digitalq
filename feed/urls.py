@@ -11,7 +11,7 @@ urlpatterns = [
     path('api/targeted_population/', views.targeted_populations),
     path('api/post_population/', views.post_populations), # create new dish
     path('api/delete_population/<str:pk>/', views.delete_dish), # delete dish
-    path('api/update_population/<str:pk>/', views.update_dish), # delete dish
+    path('api/update_population/<str:pk>/', views.update_dish), # update dish info
     # retrive dish data
     path('api/population/', views.population), # retrive all dish
     path('api/population/eventid/', views.get_eventid_wise_dish), # retrive eventid_wise single dish
@@ -33,3 +33,6 @@ urlpatterns = [
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
+
+
+

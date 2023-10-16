@@ -136,19 +136,20 @@ def post_populations(request):
 
         return Response(response, status=status.HTTP_201_CREATED)
 
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'PUT', 'PATCH'])
 def update_dish(request, pk):
 
     if request.method == 'PUT':
         data = request.data
 
-        response = update_population_2(
+        response = update_population(
             pk,
-            data.get("dish_code"), 
-            data.get("org_id"), 
+            # data.get("dish_code"), 
+            # data.get("org_id"), 
             data.get("dish_name"), 
             data.get("image_url"),  
-            data.get("time"), 
+            data.get("dish_qrcode"),  
+            # data.get("time"), 
             data.get("dish_price"), 
             data.get("dish_type"), 
             data.get("dish_specs"), 
