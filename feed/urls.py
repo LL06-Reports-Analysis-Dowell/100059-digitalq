@@ -17,7 +17,7 @@ urlpatterns = [
     path('api/population/eventid/', views.get_eventid_wise_dish), # retrive eventid_wise single dish
     path('api/population/type/', views.get_same_type_dish_order), # Retrieve Dish list by dish type
     path('api/population/dish_code/', views.get_dish_code_type_dish_order), # Retrieve Dish list by dish code
-    path('api/population/<str:pk>/', views.get_id_wise_dish), # Retrieve id wise dish
+    path('api/population/dish_id/', views.get_id_wise_dish), # Retrieve id wise dish
 
     path('api/payload/', views.payload),
     path('api/payload/<int:number>', views.payload_param),
