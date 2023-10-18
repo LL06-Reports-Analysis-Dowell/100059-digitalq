@@ -61,10 +61,19 @@ def order_detail(request, id, format=None):
 @api_view(['GET'])
 def population(request):
     if request.method == 'GET':
-
-        response = get_all_dish_list()
-        # print('all dish order ======>', response)
+        page_number = request.GET.get('page', '')
+        # print('=========> ',type(page_number))
+        if page_number=='':
+            response = get_all_dish_list()['data']
+            return Response(response)
+        
+        page_number = int(page_number)
+        lower_bound = (page_number-1)*10
+        upper_bound = (page_number)*10
+        response = get_all_dish_list()['data'][lower_bound:upper_bound]
         return Response(response)
+        
+        
 
 @api_view(['GET'])
 def get_dish_order_view(request):
