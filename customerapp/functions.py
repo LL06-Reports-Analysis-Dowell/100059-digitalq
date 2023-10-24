@@ -6,7 +6,7 @@ from datetime import datetime
 import uuid
 from django.core import serializers
 
-
+# create new order 
 def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
             queue, counter, delivery_time):
     global event_id

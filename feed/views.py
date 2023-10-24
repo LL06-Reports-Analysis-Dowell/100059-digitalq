@@ -326,25 +326,25 @@ def get_id_wise_dish(request):
 #         print('error============')
 #         return Response(content, status=status.HTTP_404_NOT_FOUND)
 
-# get all order by queue
-@api_view(['GET'])
-def get_order_by_queue_view(request):
-    content = {}
-    if request.method == 'GET':
-        dish_order_queue = request.GET.get('queue', '')
-        obj = get_all_order_list()
-        # if nothing passed, then show all order 
-        if dish_order_queue=='':
-            return Response(obj, status=status.HTTP_200_OK)
+# # get all order by queue
+# @api_view(['GET'])
+# def get_order_by_queue_view(request):
+#     content = {}
+#     if request.method == 'GET':
+#         dish_order_queue = request.GET.get('queue', '')
+#         obj = get_all_order_list()
+#         # if nothing passed, then show all order 
+#         if dish_order_queue=='':
+#             return Response(obj, status=status.HTTP_200_OK)
 
-        same_type_order = []
-        dish_order_queue = int(dish_order_queue)
-        for dish in obj['data']:
-            if dish['queue'] == dish_order_queue:
-                same_type_order.append(dish)
-        return Response(same_type_order, status=status.HTTP_200_OK)
+#         same_type_order = []
+#         dish_order_queue = int(dish_order_queue)
+#         for dish in obj['data']:
+#             if dish['queue'] == dish_order_queue:
+#                 same_type_order.append(dish)
+#         return Response(same_type_order, status=status.HTTP_200_OK)
 
-    else:
-        content = {'status_code': 404, 'error': 'The resource was not found'}
-        print('error============')
-        return Response(content, status=status.HTTP_404_NOT_FOUND)
+#     else:
+#         content = {'status_code': 404, 'error': 'The resource was not found'}
+#         print('error============')
+#         return Response(content, status=status.HTTP_404_NOT_FOUND)
