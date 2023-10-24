@@ -45,6 +45,21 @@ def post_orders(request):
 
         return Response(response, status=status.HTTP_201_CREATED)
 
+@api_view(['GET', 'PUT', 'PATCH'])
+def update_order(request, pk):
+
+    if request.method == 'PUT':
+        data = request.data
+
+        response = update_orders(
+            pk,
+            data.get("queue"), 
+            data.get("counter"),  
+            data.get("status")
+            )
+        return Response(response, status=status.HTTP_201_CREATED)
+
+
 @api_view(['GET'])
 def get_dish_order_view(request):
     if request.method == 'GET':

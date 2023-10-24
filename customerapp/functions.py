@@ -122,7 +122,7 @@ def get_all_order_list():
     return result
 
 # Update order information
-def update_order(pk, queue, counter, status):
+def update_orders(pk, queue, counter, status):
     
     url = "http://uxlivinglab.pythonanywhere.com"
 
