@@ -163,35 +163,6 @@ def update_dish(request, pk):
             )
         return Response(response, status=status.HTTP_201_CREATED)
 
-# delete dish 
-@api_view(['DELETE'])
-def delete_dish(request, pk):
-    content = {}
-    if request.method == 'DELETE':
-        obj = get_all_dish_list()
-
-        # same_type_dish = []
-        for dish in obj['data']:
-            if dish['_id'] == pk:
-                dish.delete()
-                return Response(dish, status=status.HTTP_200_OK)
-
-    else:
-        content = {'status_code': 404, 'error': 'The resource was not found'}
-        print('error============')
-        return Response(content, status=status.HTTP_404_NOT_FOUND)
-
-
-# @api_view(['GET', 'POST'])
-# def post_orders(request):
-
-#     if request.method == 'POST':
-#         data = request.data
-
-#         response = post_order(data.get("user_id"), data.get("mobile"), data.get("name"), data.get("product"), data.get("product_image"), data.get("coupon"), data.get("qr_code"),
-#                               data.get("queue"), data.get("counter"), data.get("delivery_time"))
-
-#         return Response(response, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET', 'POST'])
