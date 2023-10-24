@@ -7,8 +7,7 @@ import uuid
 from django.core import serializers
 from feed.functions import get_event_id
 # create new order 
-def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
-            queue, counter, delivery_time):
+def post_order(user_id, mobile, name, product, product_image, coupon, qr_code, queue, counter, delivery_time, status , dish_code, dish_price, dish_type, dish_id, dish_spec, quantity_ordered, payment_details):
     global event_id
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
@@ -66,6 +65,14 @@ def post_order(user_id, mobile, name, product, product_image, coupon, qr_code,
             "queue" : queue,
             "counter" : counter,
             "delivery_time" : delivery_time,
+            "status" : status,
+            "dish_code" : dish_code,
+            "dish_price" : dish_price,
+            "dish_type" : dish_type,
+            "dish_id" : dish_id,
+            "dish_spec" : dish_spec,
+            "quantity_ordered" : quantity_ordered,
+            "payment_details" : payment_details
             },
         "update_field": {
             "order_nos": 21
