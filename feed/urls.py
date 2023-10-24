@@ -22,12 +22,6 @@ urlpatterns = [
     path('api/payload/', views.payload),
     path('api/payload/<int:number>', views.payload_param),
     path('api/connection/', views.connection),
-
-    ## order API
-    # path('api/post_order/', views.post_orders), # create order
-    # path('api/order/', views.get_dish_order_view), # get all orders 
-    # path('api/order/coupon/', views.get_order_by_coupon_view), # get orders by coupon
-    # path('api/order/queue/', views.get_order_by_queue_view), # get orders by queue
     
     path('api/create_event/', views.create_events), # for testing 
 

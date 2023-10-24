@@ -9,9 +9,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path('api/post_order/', post_orders), # create order
+    path('post_order/', post_orders), # create order
     path('order/', get_dish_order_view), # get all orders 
     path('order/coupon/', get_order_by_coupon_view), # get orders by coupon
     path('order/queue/', get_order_by_queue_view), # get orders by queue
-
 ]
