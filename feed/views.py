@@ -62,13 +62,15 @@ def order_detail(request, id, format=None):
 def population(request):
     if request.method == 'GET':
         page_number = request.GET.get('page', '')
+        per_page = request.GET.get('per_page', 10)
         if page_number=='':
             response = get_all_dish_list()['data']
             return Response(response)
         
         page_number = int(page_number)
-        lower_bound = (page_number-1)*10
-        upper_bound = (page_number)*10
+        per_page = int(per_page)
+        lower_bound = (page_number-1)*per_page
+        upper_bound = (page_number)*per_page
         response = get_all_dish_list()['data'][lower_bound:upper_bound]
         return Response(response)    
         
