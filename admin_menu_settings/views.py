@@ -14,3 +14,22 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
+@api_view(['GET', 'POST'])
+def create_branches(request):
+
+    if request.method == 'POST':
+        data = request.data
+
+        response = create_branch(
+            data.get("branch_name"), 
+            data.get("branch_id"), 
+            data.get("country"), 
+            data.get("city"),  
+            data.get("location"), 
+            data.get("currency"), 
+            data.get("q_type")
+            )
+        # print('================>',data.get("branch_name"))
+        # response = 'Ok, Testing...'
+
+        return Response(response, status=status.HTTP_201_CREATED)
