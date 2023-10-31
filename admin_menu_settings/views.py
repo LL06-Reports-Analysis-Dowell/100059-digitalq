@@ -29,7 +29,5 @@ def create_branches(request):
             data.get("currency"), 
             data.get("q_type")
             )
-        # print('================>',data.get("branch_name"))
-        # response = 'Ok, Testing...'
 
         return Response(response, status=status.HTTP_201_CREATED)
