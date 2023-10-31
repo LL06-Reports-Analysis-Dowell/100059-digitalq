@@ -105,7 +105,7 @@ def get_all_branch_list():
     result = json.loads(response)
     return result
 
-# Update order information
+# Update branch information
 def update_branches(pk, branch_name, branch_id, country, city, location, currency, q_type):
     
     url = "http://uxlivinglab.pythonanywhere.com"
