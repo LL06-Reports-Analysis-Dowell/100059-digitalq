@@ -73,7 +73,7 @@ def create_branch(branch_name, branch_id, country, city, location, currency, q_t
     result = json.loads(response)
     return result
 
-# get all order information
+# get all branch information
 def get_all_branch_list():
     
     url = "http://uxlivinglab.pythonanywhere.com"
@@ -100,6 +100,45 @@ def get_all_branch_list():
     response = requests.request("POST", url, headers=headers, data=payload)
 
     # print(response.json())
+    response = response.json()
+
+    result = json.loads(response)
+    return result
+
+# Update order information
+def update_branches(pk, branch_name, branch_id, country, city, location, currency, q_type):
+    
+    url = "http://uxlivinglab.pythonanywhere.com"
+
+    payload = json.dumps({
+       "cluster": "extension",
+       "database": "extension",
+       "collection": "favorite",
+       "document": "favorite",
+       "team_member_ID": "1243001",
+       "function_ID": "ABCDE",
+       "command": "update",
+       "field": {
+              "_id": pk,
+       },
+       "update_field": {
+            "branch_name": branch_name,
+            "branch_id": branch_id,
+            "country": country,
+            "city": city,
+            "location": location,
+            "currency": currency,
+            "q_type": q_type
+       },
+       "platform": "bangalore"
+    })
+
+    headers = {
+       'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
     response = response.json()
 
     result = json.loads(response)

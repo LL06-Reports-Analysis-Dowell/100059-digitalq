@@ -31,3 +31,11 @@ def create_branches(request):
             )
 
         return Response(response, status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])
+def get_branch_list_view(request):
+    if request.method == 'GET':
+
+        response = get_all_branch_list()
+        # print('all dish order ======>', response)
+        return Response(response)
