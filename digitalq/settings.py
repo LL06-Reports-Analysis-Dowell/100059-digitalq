@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # installed app 
     'feed',
     'customerapp',
+    'admin_menu_settings',
     
     # third party app 
     'corsheaders',
