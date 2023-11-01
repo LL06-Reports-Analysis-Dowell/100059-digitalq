@@ -42,11 +42,11 @@ def create_branch(branch_name, branch_id, country, city, location, currency, q_t
 
     url = "http://uxlivinglab.pythonanywhere.com/" 
     payload = json.dumps({
-        "cluster": "extension",
-        "database": "extension",
-        "collection": "favorite",
-        "document": "favorite",
-        "team_member_ID": "1243001",
+        "cluster": "digitalq",
+        "database": "digitalq",
+        "collection": "admin_settings",
+        "document": "admin_settings",
+        "team_member_ID": "1244001",
         "function_ID": "ABCDE",
         "command": "insert",
         "field": {
@@ -79,11 +79,11 @@ def get_all_branch_list():
     url = "http://uxlivinglab.pythonanywhere.com"
 
     payload = json.dumps({
-       "cluster": "extension",
-       "database": "extension",
-       "collection": "favorite",
-       "document": "favorite",
-       "team_member_ID": "1243001",
+       "cluster": "digitalq",
+       "database": "digitalq",
+       "collection": "admin_settings",
+       "document": "admin_settings",
+       "team_member_ID": "1244001",
        "function_ID": "ABCDE",
        "command": "fetch",
        "field": {
@@ -111,11 +111,11 @@ def update_branches(pk, branch_name, branch_id, country, city, location, currenc
     url = "http://uxlivinglab.pythonanywhere.com"
 
     payload = json.dumps({
-       "cluster": "extension",
-       "database": "extension",
-       "collection": "favorite",
-       "document": "favorite",
-       "team_member_ID": "1243001",
+       "cluster": "digitalq",
+       "database": "digitalq",
+       "collection": "admin_settings",
+       "document": "admin_settings",
+       "team_member_ID": "1244001",
        "function_ID": "ABCDE",
        "command": "update",
        "field": {
