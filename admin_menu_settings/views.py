@@ -22,6 +22,7 @@ def create_branches(request):
 
         response = create_branch(
             data.get("branch_name"), 
+            data.get("brand_name"), 
             data.get("branch_id"), 
             data.get("country"), 
             data.get("city"),  
@@ -49,8 +50,9 @@ def update_branch(request, pk):
 
         response = update_branches(
             pk,
-            data.get("branch_name"), 
-            data.get("branch_id"),  
+            data.get("branch_name"),
+            data.get("brand_name"), 
+            data.get("branch_id"),    
             data.get("country"),
             data.get("city"),
             data.get("location"),

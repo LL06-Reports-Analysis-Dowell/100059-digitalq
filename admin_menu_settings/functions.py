@@ -6,7 +6,7 @@ from datetime import datetime
 import uuid
 
 # branch creation 
-def create_branch(branch_name, branch_id, country, city, location, currency, q_type):
+def create_branch(branch_name, brand_name , branch_id, country, city, location, currency, q_type):
 
     dd=datetime.now()
     time=dd.strftime("%d:%m:%Y,%H:%M:%S")
@@ -51,6 +51,7 @@ def create_branch(branch_name, branch_id, country, city, location, currency, q_t
         "command": "insert",
         "field": {
             "branch_name" : branch_name,
+            "brand_name" : brand_name,
             "branch_id" : branch_id,
             "country" : country,
             "city" : city,
@@ -106,7 +107,7 @@ def get_all_branch_list():
     return result
 
 # Update branch information
-def update_branches(pk, branch_name, branch_id, country, city, location, currency, q_type):
+def update_branches(pk, branch_name, brand_name, branch_id, country, city, location, currency, q_type):
     
     url = "http://uxlivinglab.pythonanywhere.com"
 
@@ -123,6 +124,7 @@ def update_branches(pk, branch_name, branch_id, country, city, location, currenc
        },
        "update_field": {
             "branch_name": branch_name,
+            "brand_name": brand_name,
             "branch_id": branch_id,
             "country": country,
             "city": city,
